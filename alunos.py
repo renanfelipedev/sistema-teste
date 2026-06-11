@@ -2,12 +2,12 @@ import csv
 from uuid import uuid4
 from os import path
 
-ARQUIVO = 'teste.csv'
+ARQUIVO = 'alunos.csv'
 
 def verifica_arquivo():
     if not path.isfile(ARQUIVO):
         with open(ARQUIVO, 'w', encoding='utf-8') as arquivo:
-            cabecalho = "id,nome,curso,periodo,status"
+            cabecalho = "id,nome,curso,periodo,status\n"
             arquivo.write(cabecalho)
 
 def cadastrar():
@@ -64,7 +64,7 @@ def excluir():
         print("Aluno não encontrado!")
         return
 
-    with open('alunos.csv', 'w', encoding='utf-8', newline='') as arquivo:
+    with open(ARQUIVO, 'w', encoding='utf-8', newline='') as arquivo:
         escritor = csv.DictWriter(arquivo, fieldnames=campo_nomes)
         escritor.writeheader()
         escritor.writerows(alunos)
