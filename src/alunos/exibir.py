@@ -1,0 +1,2 @@
+def exibir(linha):
+    print("")

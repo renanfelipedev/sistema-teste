@@ -19,4 +19,12 @@ def cadastrar():
     with open(ARQUIVO, 'a', encoding='utf-8', newline='') as arquivo:
         escritor = csv.DictWriter(arquivo, fieldnames=["id", "nome", "curso", "periodo", "status"])
         escritor.writerow(novo_aluno)
-        print(f"Aluno {nome} cadastrado com sucesso!")
+        print(f"Aluno cadastrado com sucesso!")
+        print(f"""----------------------------------------
+Matrícula: {novo_aluno['id']}
+Nome: {novo_aluno['nome']}
+Curso: {novo_aluno['curso']}
+Período: {novo_aluno['periodo']}
+Status: {novo_aluno['status']}
+----------------------------------------""")
+        

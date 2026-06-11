@@ -2,22 +2,32 @@ import alunos
 
 def show_menu():
     print("""
-    1 - Cadastrar discente
-    2 - Listar discentes
-    3 - Excluir discente
+    [C]adastrar discente
+    [B]uscar discente
+    [L]istar discentes
+    [E]xcluir discente
+
+    [S]air
     """)
 
 if __name__ == "__main__":
-    show_menu()
+    while True:
+        show_menu()
 
-    opcao = int(input("Informe a opção desejada: "))
+        opcao = input("Informe a opção desejada: ").lower()
 
-    if opcao == 1:
-        alunos.cadastrar()
-    elif opcao == 2:
-        alunos.listar()
-    elif opcao == 3:
-        alunos.excluir()
-    else:
-        print("Opção inválida")
+        match opcao:
+            case 'c':
+                alunos.cadastrar()
+            case 'b':
+                alunos.buscar()
+            case 'l':
+                alunos.listar()
+            case 'e':
+                alunos.excluir()
+            case 's':
+                print("Saindo...")
+                break
+            case _:
+                print("Opção inválida")
 
