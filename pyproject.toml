@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sistema-teste"
+version = "0.1.0"
+description = "Sistema de gerenciamento de discentes em Python"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Renan" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.scripts]
+sistema-teste = "sistema_teste.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

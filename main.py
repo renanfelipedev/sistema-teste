@@ -1,23 +1,19 @@
-import alunos
+import sys
+from pathlib import Path
 
-def show_menu():
-    print("""
-    1 - Cadastrar discente
-    2 - Listar discentes
-    3 - Excluir discente
-    """)
+# Adiciona o diretório 'src' e a raiz ao sys.path para permitir importações
+root_path = Path(__file__).parent
+src_path = root_path / "src"
+
+if str(root_path) not in sys.path:
+    sys.path.insert(0, str(root_path))
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
+
+try:
+    from sistema_teste.main import main
+except ImportError:
+    from src.sistema_teste.main import main
 
 if __name__ == "__main__":
-    show_menu()
-
-    opcao = int(input("Informe a opção desejada: "))
-
-    if opcao == 1:
-        alunos.cadastrar()
-    elif opcao == 2:
-        alunos.listar()
-    elif opcao == 3:
-        alunos.excluir()
-    else:
-        print("Opção inválida")
-
+    main()
