@@ -9,7 +9,7 @@ from sistema_teste.alunos.persistencia import (
 def adicionar_curso(nome_curso: str) -> bool:
     """Adiciona um novo curso à lista caso não exista."""
     nome_formatado = nome_curso.strip()
-    if any(c.lower() == nome_formatado.lower() for c in cursos_homologados):
+    if any(curso_cadastrado.lower() == nome_formatado.lower() for curso_cadastrado in cursos_homologados):
         print(f"[ERRO] O curso '{nome_formatado}' já está cadastrado.")
         return False
     
@@ -24,7 +24,7 @@ def cadastrar_solicitacao(matricula: int, nome: str, curso: str) -> bool:
         print(f"[ERRO] Matrícula {matricula} já cadastrada na base.")
         return False
 
-    curso_homologado = next((c for c in cursos_homologados if c.lower() == curso.strip().lower()), None)
+    curso_homologado = next((curso_cadastrado for curso_cadastrado in cursos_homologados if curso_cadastrado.lower() == curso.strip().lower()), None)
     if not curso_homologado:
         print(f"[ERRO] Curso '{curso}' inválido. Homologados: {cursos_homologados}")
         return False
