@@ -1,28 +1,11 @@
-import csv
-from os import path
+# Estado global das coleções em memória
 
-ARQUIVO = 'alunos.csv'
-
-def verifica_arquivo(file_path=ARQUIVO):
-    if not path.isfile(file_path):
-        with open(file_path, 'w', encoding='utf-8') as arquivo:
-            cabecalho = "id,nome,curso,periodo,status\n"
-            arquivo.write(cabecalho)
-
-def ler_alunos(file_path=ARQUIVO):
-    verifica_arquivo(file_path)
-    with open(file_path, 'r', encoding='utf-8', newline='') as arquivo:
-        leitor = csv.DictReader(arquivo)
-        return list(leitor), leitor.fieldnames
-
-def salvar_aluno(novo_aluno, file_path=ARQUIVO):
-    verifica_arquivo(file_path)
-    with open(file_path, 'a', encoding='utf-8', newline='') as arquivo:
-        escritor = csv.DictWriter(arquivo, fieldnames=["id", "nome", "curso", "periodo", "status"])
-        escritor.writerow(novo_aluno)
-
-def reescrever_alunos(alunos, campo_nomes, file_path=ARQUIVO):
-    with open(file_path, 'w', encoding='utf-8', newline='') as arquivo:
-        escritor = csv.DictWriter(arquivo, fieldnames=campo_nomes)
-        escritor.writeheader()
-        escritor.writerows(alunos)
+alunos_db = {}            # Dict: matricula -> {'matricula', 'nome', 'curso', 'status'}
+fila_atendimento = []     # List (FIFO): armazena apenas as matrículas
+historico_secretaria = [] # List (LIFO): armazena tuplas imutáveis ("ACAO", matricula)
+cursos_homologados = [    # List: cursos válidos
+    "Engenharia de Software",
+    "Ciência da Computação",
+    "Sistemas de Informação",
+    "Licenciatura em Computação"
+]
